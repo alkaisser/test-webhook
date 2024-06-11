@@ -38,6 +38,15 @@ server.listen(PORT, () => {
 io.on('connection', (socket) => {
     console.log('Cliente conectado:', socket.id);
 
+    socket.on('sendText', (text) => {
+        console.log('Texto recibido:', text);
+
+        const reversedText = text.split('').reverse().join('');
+        console.log('Texto invertido:', reversedText);
+
+        socket.emit('receiveText', reversedText);
+    });
+
     socket.on('disconnect', () => {
         console.log('Cliente desconectado:', socket.id);
     });

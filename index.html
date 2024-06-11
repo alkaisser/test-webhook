@@ -1,0 +1,15 @@
+<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+<script>
+    // const socket = io();
+
+    const socket = io("http://localhost:3000/", {
+        secure: true,
+        transports: ["websocket", "polling"]
+    });
+
+    socket.emit('sendText', 'Gato');
+
+    socket.on('receiveText', (reversedText) => {
+        console.log(reversedText);
+    });
+</script>
